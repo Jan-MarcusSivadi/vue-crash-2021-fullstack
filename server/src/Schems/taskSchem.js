@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 
 const taskSchema = mongoose.Schema({
-    id: {
-        type: Number,
+    uid: {
+        type: String,
         required: true
     },
     text: {
@@ -11,11 +11,11 @@ const taskSchema = mongoose.Schema({
     },
     day: {
         type: String,
-        required: true
+        required: false
     },
     reminder: {
         type: Boolean,
-        required: true
+        required: false
     }
 }, {
     versionKey: false,

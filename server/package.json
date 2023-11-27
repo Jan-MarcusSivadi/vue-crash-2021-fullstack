@@ -16,6 +16,7 @@
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.1",
     "nodemon": "^3.0.1",
+    "uniqid": "^5.4.0",
     "vue-crash-2021-fullstack": "file:.."
   }
 }

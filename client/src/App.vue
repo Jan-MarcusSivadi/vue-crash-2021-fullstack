@@ -24,7 +24,6 @@ import Footer from "./components/Footer";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
-
 export default {
   name: "App",
   components: {
@@ -61,13 +60,24 @@ export default {
           method: "DELETE",
         });
 
-        res.status === 200
-          ? (this.tasks = this.tasks.filter((task) => task.id !== id))
+        res.status === 204
+          ? (this.tasks = this.tasks.filter((task) => task.uid !== id))
           : alert("Error deleting task");
       }
     },
     async toggleReminder(id) {
+      if (!id) {
+        return alert("Task not found");
+      }
+
+      this.tasks = this.tasks.map((task) => {
+        return task.uid === id ? { ...task, reminder: !task.reminder } : task;
+      });
+
       const taskToToggle = await this.fetchTask(id);
+      if (!taskToToggle) {
+        return alert("Task not found");
+      }
       const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
       const res = await fetch(`/api/tasks/${id}`, {
@@ -78,26 +88,29 @@ export default {
         body: JSON.stringify(updTask),
       });
 
-      const data = await res.json();
+      if (res.status !== 200) {
+        return alert("Error updating task");
+      }
 
-      this.tasks = this.tasks.map((task) => {
-        return task.id === id ? { ...task, reminder: data.reminder } : task;
-      });
+      const data = await res.json();
+      console.log(data);
+
+      // this.tasks = this.tasks.map((task) => {
+      //   return task.uid === id ? { ...task, reminder: data.reminder } : task;
+      // });
     },
     async fetchTasks() {
       let data;
       try {
         const res = await fetch(`/api/tasks`);
-        console.log("RES", res);
 
         if (!res || res.status != 200) {
           return null;
         }
         data = await res.json();
-        console.log(data)
-
+        console.log(data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       return data;
     },
@@ -105,16 +118,13 @@ export default {
       let data;
       try {
         const res = await fetch(`/api/tasks/${id}`);
-        console.log("RES", res);
 
         if (!res || res.status != 200) {
           return null;
         }
         data = await res.json();
-        console.log(data)
-
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
       return data;
     },

@@ -1,9 +1,9 @@
 <template>
   <div v-if="tasks.length > 0">
-    <div :key="task.id"  v-for="task in tasks">
+    <div :key="task.uid"  v-for="task in tasks">
       <Task
-        @toggle-reminder="$emit('toggle-reminder', task.id)"
-        @delete-task="$emit('delete-task', task.id)"
+        @toggle-reminder="$emit('toggle-reminder', task.uid)"
+        @delete-task="$emit('delete-task', task.uid)"
         :task="task"
       />
     </div>
