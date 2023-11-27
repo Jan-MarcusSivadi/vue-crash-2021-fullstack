@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Doctors Appointment",
+      "day": "March 1st at 2:30pm",
+      "reminder": false
+    },
+    {
+      "id": 3,
+      "text": "Wake up, go to school",
+      "day": "at 8:30 on 11.24.2023",
+      "reminder": true
+    }
+  ]
+}

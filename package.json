@@ -1,0 +1,23 @@
+{
+  "name": "vue-crash-2021-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=\"production\" npm start --prefix ./server",
+    "dev": "cross-env NODE_ENV=\"development\" start npm start --prefix ./server && start npm run serve --prefix ./client",
+    "backend-dev": "npm run dev --prefix ./server",
+    "build": "npm run build --prefix ./client",
+    "install-all": "npm install --prefix ./client && npm install --prefix ./server && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
