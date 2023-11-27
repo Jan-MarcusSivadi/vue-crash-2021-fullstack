@@ -24,8 +24,6 @@ import Footer from "./components/Footer";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 
-const proxyName = process.env.TEST
-console.log(proxyName)
 
 export default {
   name: "App",
@@ -46,7 +44,7 @@ export default {
       this.showAddTask = !this.showAddTask;
     },
     async addTask(task) {
-      const res = await fetch(`${proxy}/api/tasks`, {
+      const res = await fetch(`/api/tasks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,7 +57,7 @@ export default {
     },
     async deleteTask(id) {
       if (confirm("Are you sure?")) {
-        const res = await fetch(`${proxy}/api/tasks/${id}`, {
+        const res = await fetch(`/api/tasks/${id}`, {
           method: "DELETE",
         });
 
@@ -72,7 +70,7 @@ export default {
       const taskToToggle = await this.fetchTask(id);
       const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
 
-      const res = await fetch(`${proxy}/api/tasks/${id}`, {
+      const res = await fetch(`/api/tasks/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -106,7 +104,7 @@ export default {
     async fetchTask(id) {
       let data;
       try {
-        const res = await fetch(`${proxy}/api/tasks/${id}`);
+        const res = await fetch(`/api/tasks/${id}`);
         console.log("RES", res);
 
         if (!res || res.status != 200) {
