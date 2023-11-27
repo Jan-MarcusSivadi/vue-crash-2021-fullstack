@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=\"production\" npm start --prefix ./server",
-    "dev": "cross-env NODE_ENV=\"development\" start npm start --prefix ./server && start npm run serve --prefix ./client",
+    "dev": "cross-env NODE_ENV=\"development\" start npm run dev --prefix ./server && start npm run serve --prefix ./client",
     "build": "npm run build --prefix ./client",
     "install-all": "npm install --prefix ./client && npm install --prefix ./server && npm install"
   },
